@@ -240,3 +240,87 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
         opacity:0;
     }
 }
+
+/* ============================================================
+   NUEVO: Personalizador de productos (modal)
+   ============================================================ */
+.pm-overlay{
+  position:fixed;inset:0;z-index:80;
+  display:flex;align-items:center;justify-content:center;padding:1rem;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+  animation:fade .25s ease;
+}
+.pm-modal{
+  width:100%;max-width:480px;max-height:90vh;overflow-y:auto;
+  background:var(--card);border:1px solid var(--border);border-radius:1.25rem;
+  box-shadow:var(--shadow-glow);
+  animation:pmIn .3s cubic-bezier(.16,1,.3,1);
+}
+@keyframes pmIn{
+  from{opacity:0;transform:translateY(24px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.pm-hero{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:1.25rem 1.25rem 0 0}
+.pm-hero img{width:100%;height:100%;object-fit:cover}
+.pm-hero .pm-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--card),transparent 60%)}
+.pm-close{
+  position:absolute;top:.75rem;right:.75rem;z-index:2;
+  width:38px;height:38px;border-radius:9999px;
+  background:rgba(0,0,0,.55);color:#fff;font-size:1.1rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;
+}
+.pm-close:hover{transform:scale(1.1);background:var(--primary)}
+.pm-body{padding:1.25rem 1.5rem 1.5rem}
+.pm-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.pm-title-row h3{font-size:2rem;line-height:1}
+.pm-base{color:var(--secondary);font-weight:700;font-size:1.35rem;white-space:nowrap}
+.pm-desc{margin-top:.5rem;color:var(--muted-fg);font-size:.9rem}
+.pm-section{margin-top:1.5rem}
+.pm-section h4{font-family:"Bebas Neue",sans-serif;font-size:1.35rem;letter-spacing:.1em;color:var(--foreground);margin-bottom:.5rem}
+.pm-opt{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.65rem .85rem;margin-bottom:.5rem;
+  background:var(--background);border:1px solid var(--border);border-radius:.75rem;
+  cursor:pointer;transition:border-color .2s,background .2s;
+}
+.pm-opt:hover{border-color:var(--primary)}
+.pm-opt input{
+  appearance:none;-webkit-appearance:none;
+  width:22px;height:22px;flex:none;border-radius:.4rem;
+  border:2px solid var(--border);background:var(--card);position:relative;transition:all .2s;cursor:pointer;
+}
+.pm-opt input:checked{background:var(--primary);border-color:var(--primary)}
+.pm-opt input:checked::after{
+  content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.8rem;font-weight:900;
+}
+.pm-opt .pm-opt-name{flex:1;font-weight:500}
+.pm-opt .pm-opt-price{color:var(--secondary);font-weight:700;font-size:.9rem}
+.pm-controls{
+  margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.pm-qty{display:flex;align-items:center;gap:.85rem}
+.pm-qty button{
+  width:42px;height:42px;border-radius:9999px;background:var(--card);border:1px solid var(--border);
+  font-size:1.4rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.pm-qty button:hover{background:var(--primary);color:var(--primary-fg);border-color:transparent}
+.pm-qty span{font-size:1.35rem;font-weight:700;min-width:1.5rem;text-align:center}
+.pm-total{font-size:1.1rem;font-weight:700}
+.pm-total strong{color:var(--secondary);font-size:1.35rem;margin-left:.35rem}
+.pm-add{width:100%;margin-top:1.25rem}
+
+/* ============================================================
+   NUEVO: bloque de tiempo estimado / delivery en el carrito
+   ============================================================ */
+.cart-delivery{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.85rem 1rem;border:1px solid var(--border);border-radius:.75rem;
+  background:color-mix(in oklab,var(--secondary) 10%,transparent);
+}
+.cart-delivery .cd-icon{font-size:1.5rem}
+.cart-delivery .cd-label{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted-fg)}
+.cart-delivery .cd-value{font-weight:700;color:var(--secondary)}
+
+/* add-ons listed under a cart item */
+.cart-item .addons{font-size:.75rem;color:var(--muted-fg);margin-top:.25rem;line-height:1.35}
